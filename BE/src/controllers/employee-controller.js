@@ -54,10 +54,32 @@ async function deleteEmployeeById(req, res) {
 	}
 }
 
+async function employeeAuth(req, res) {
+    try {
+        const { email, password } = req.body;
+        const result = await employeeService.employeeAuth(email, password);
+        
+        res.json({
+            message: 'Login successful',
+            data: {
+                id: result._id,
+                email: result.email
+            }
+        });
+		
+
+    } catch (error) {
+        res.status(error.message.includes('Email not found') ? 404 : 401).json({
+            error: error.message
+        });
+    }
+}
+
 module.exports = {
 	findAllEmployees,
 	findEmployeeById,
 	createEmployee,
 	updateEmployeeById,
 	deleteEmployeeById,
+	employeeAuth
 }

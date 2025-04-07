@@ -9,5 +9,6 @@ router.get('/employees/:id', validateId, employeeController.findEmployeeById)
 router.post('/employees/', validateEmployeeData, employeeController.createEmployee)
 router.put('/employees/:id', validateId, validateEmployeeData, employeeController.updateEmployeeById)
 router.delete('/employees/:id', validateId, employeeController.deleteEmployeeById)
+router.post('/login', employeeController.employeeAuth)
 
 module.exports = router

@@ -1,6 +1,7 @@
 const { ObjectId } = require('mongodb')
 const db = require('../db/mongodb')
 const employees = db.collection('employees')
+const argon2 = require("argon2");
 
 async function findAllEmployees() {
 	const result = employees.find().toArray()
@@ -54,10 +55,26 @@ async function deleteEmployeeById(id) {
 	return result
 }
 
+async function employeeAuth(email, password) {
+    const user = await employees.findOne({ email: email });
+
+    if (!user) {
+        throw new Error('Employee not found');
+    }
+
+    const verified = await argon2.verify(user.password, password);
+    
+    if (!verified) {
+        throw new Error('Invalid password');
+    }
+    return user;
+}
+
 module.exports = {
 	findAllEmployees,
     findEmployeeById,
 	createEmployee,
 	updateEmployeeById,
 	deleteEmployeeById,
+	employeeAuth
 }

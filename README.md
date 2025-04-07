@@ -39,8 +39,8 @@ and on the front end wait until you see this message:
 
 The login Screen will pop up use the following credentials to log in:
 
- #### email: "admin@mail.com"
- #### password: "admin"
+ - email: "admin@mail.com"
+ - password: "admin"
 
 Right after you will be redirected to the Home Screen where you can see all current employees and can edit the records as well,
 there is an Admin Panel where you can Create New Employees, Edit all of them and Delete them as well,

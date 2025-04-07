@@ -20,7 +20,7 @@ npm run dev
 on the backend wait until you see this message pop up:
 
 ```
-Listening on port: 3000\
+Listening on port: 3000
 ```
 and on the front end wait until you see this message:
 ```
@@ -34,6 +34,7 @@ and on the front end wait until you see this message:
 .post('/http://localhost:3000/api/employees') -> Creates an Employee
 .put('/http://localhost:3000/api/employees/:id') -> Updates an Employee By Id
 .delete('/http://localhost:3000/api/employees/:id') -> Deletes an Employee By Id
+.post('/login', employeeController.employeeAuth) -> login Validator Route for BE
 
 # Web App Usage
 
@@ -47,7 +48,7 @@ there is an Admin Panel where you can Create New Employees, Edit all of them and
 to choose the desired Vacation Days Navigate to Edit and choose your days on the calendar.
 
 #TODO
-Due to time constraints i could not implement a proper auth system for the login but i would like to do so in the future, also role based operations as well.
+Due to time constraints i could not implement a proper auth system for the login on the FE but i would like to do so in the future, also role based operations as well.
 I plan to enhance this application's security by implementing stronger and comprehensive security controls and best practices.
 
  

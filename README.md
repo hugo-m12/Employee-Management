@@ -29,19 +29,19 @@ and on the front end wait until you see this message:
 
 # API EndPoints
 
-.get('http://localhost:3000/api/employees/') -> Fetches all Employees
-.get('/http://localhost:3000/api/employees/:id') -> Fetches a Specific Employee By Id
-.post('/http://localhost:3000/api/employees') -> Creates an Employee
-.put('/http://localhost:3000/api/employees/:id') -> Updates an Employee By Id
-.delete('/http://localhost:3000/api/employees/:id') -> Deletes an Employee By Id
-.post('/login', employeeController.employeeAuth) -> login Validator Route for BE
+- .get('http://localhost:3000/api/employees/') -> Fetches all Employees
+- .get('/http://localhost:3000/api/employees/:id') -> Fetches a Specific Employee By Id
+- .post('/http://localhost:3000/api/employees') -> Creates an Employee
+- .put('/http://localhost:3000/api/employees/:id') -> Updates an Employee By Id
+- delete('/http://localhost:3000/api/employees/:id') -> Deletes an Employee By Id
+- .post('/login', employeeController.employeeAuth) -> login Validator Route for BE
 
 # Web App Usage
 
 The login Screen will pop up use the following credentials to log in:
 
  - email: "admin@mail.com"
- - password: "admin"
+ - password: "admin" 
 
 Right after you will be redirected to the Home Screen where you can see all current employees and can edit the records as well,
 there is an Admin Panel where you can Create New Employees, Edit all of them and Delete them as well,

@@ -4,11 +4,11 @@ This is a small project that creates, edits and removes Employees , books vacati
 
 #Install Instructions
 
-First get the project from the respective github page enter the project folder and go to the BE folder and run this command on your terminal/cmd/git bash:
+First get the project from the respective github page enter the project folder and go to the root of the BE folder and run this command on your terminal/cmd/git bash:
 ```
 npm i
 ```
-Do the same command on the FE folder
+Do the same command on the root of the FE folder
 
 ```
 npm i

@@ -10,28 +10,36 @@ function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [isLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
-  const mockUsersDb = [
-    { email: "admin@mail.com", password: "admin" },
-    { email: "jonhdoe@mail.com", password: "123456" },
-    { email: "sarahchen@mail.com", password: "987654321" },
-    { email: "lisanguyen@mail.com", password: "789123456" },
-    { email: "davidkim@mail.com", password: "123456789" },
-  ];
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const foundEmployee = mockUsersDb.find(
-      (user) => user.email === email && user.password === password
-    );
-
-    if (foundEmployee) {
-      setError("");
-      navigate("/home");
-    } else {
-      setError("Invalid email or password");
+    setLoading(true);
+    setError('');
+  
+    try {
+      const response = await fetch('http://localhost:3000/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.trim(), password: password })
+      });
+  
+      if (response.ok) {
+        const data = await response.json(); 
+        console.log('Login successful:', data);
+        
+        localStorage.setItem('userData', JSON.stringify(data.data));
+        
+        navigate("/home");
+      } else {
+        const errorData = await response.json(); 
+        setError(errorData.error || 'An error occurred. Please try again.');
+      }
+    } catch (err) {
+      setError('An error occurred. Please try again.');
+      console.error('Login error:', err);
+    } finally {
+      setLoading(false); 
     }
   };
 

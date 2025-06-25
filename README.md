@@ -1,4 +1,4 @@
-# Employee-Management
+# Employee Management APP
 
 This is a small project that creates, edits and removes Employees , books vacation dates on a calendar and adds them to the employee record.
 

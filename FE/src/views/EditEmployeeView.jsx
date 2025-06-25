@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import { useParams } from "wouter";
-import CalendarComponent from "../components/calendar";
+import CalendarComponent from "../components/Calendar";
 import employeeService from "../services/employeeService";
 
 function EditEmployeeView() {

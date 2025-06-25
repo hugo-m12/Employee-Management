@@ -59,13 +59,13 @@ async function employeeAuth(req, res) {
         const { email, password } = req.body;
         const result = await employeeService.employeeAuth(email, password);
         
-        res.json({
-            message: 'Login successful',
-            data: {
-                id: result._id,
-                email: result.email
-            }
-        });
+        if (!result) {
+        res.status(401).end();
+    }
+    const token = jwtService.sign(user);
+    res.json({
+        token
+    });
 		
 
     } catch (error) {

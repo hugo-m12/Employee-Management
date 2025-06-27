@@ -25,7 +25,6 @@ function AdminView() {
 
   async function handleDelete(id) {
     try {
-      console.log("clicked");
       const { confirmed, reason } = await confirm({
         title: "Are you sure you want to delete this Employee?",
         description: "This will delete this employee's data permanently",
@@ -38,7 +37,7 @@ function AdminView() {
 
         toast.success("Employee was deleted", {
           duration: 3000,
-          position: "top-center",
+          position: "top-right",
         });
         setEmployees((prevEmployees) =>
           prevEmployees.filter((emp) => emp._id !== id)

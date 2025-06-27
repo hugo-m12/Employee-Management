@@ -7,6 +7,8 @@ import AdminView from "./views/AdminView";
 import EditEmployeeView from "./views/EditEmployeeView";
 import Header from "./components/Header";
 import LoginView from "./views/LoginView";
+import { ConfirmProvider } from 'material-ui-confirm';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const [location] = useLocation();  
@@ -17,7 +19,10 @@ function App() {
       
       <Route exact path="/" component={LoginView} />
       <Route exact path="/Home" component={HomeView} />
+      <Toaster />
+      <ConfirmProvider>
       <Route path="/Admin" component={AdminView} />
+      </ConfirmProvider>
       <Route path="/CreateEmployee" component={CreateEmployeeView} />
       <Route path="/EditEmployee/:_id" component={EditEmployeeView} />
       

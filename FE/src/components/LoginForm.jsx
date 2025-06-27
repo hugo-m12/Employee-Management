@@ -3,14 +3,25 @@ import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useRef } from "react";
 import { navigate } from "wouter/use-browser-location";
+import toast from 'react-hot-toast';
+import fetchService from "../services/fetchService";
+import storeService from "../services/storeService";
 
 function LoginForm() {
   const userRef = useRef();
   const errRef = useRef();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,25 +29,33 @@ function LoginForm() {
     setError('');
   
     try {
-      const response = await fetch('http://localhost:3000/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email.trim(), password: password })
-      });
+      const response = await fetchService.post(
+        `http://localhost:3000/api/login`,
+
+        {
+          email: formData.email,
+          password: formData.password,
+        }
+      );
   
-      if (response.ok) {
-        const data = await response.json(); 
-        console.log('Login successful:', data);
-        
-        localStorage.setItem('userData', JSON.stringify(data.data));
-        
+      if (response.token) {
+
+       toast.success('Successfully logged in!', {
+          duration: 3000,
+          position: 'top-right'
+        });
+
+        console.log(response.token)
+
+        storeService.storeToken(response.token);
+        //if (onLogin) onLogin();
         navigate("/home");
       } else {
         const errorData = await response.json(); 
-        setError(errorData.error || 'An error occurred. Please try again.');
+        setError(errorData.error || 'Email or Password is Wrong. Please try again.');
       }
     } catch (err) {
-      setError('An error occurred. Please try again.');
+      setError('Email or Password is Wrong. Please try again.');
       console.error('Login error:', err);
     } finally {
       setLoading(false); 
@@ -54,8 +73,9 @@ function LoginForm() {
             <div className="relative w-full h-[50px] mx-auto border-2 border-gray-200 rounded-2xl overflow-hidden">
               <input
                 ref={userRef}
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
+                onChange={handleChange}
+                name='email'
+                value={formData.email}
                 autoComplete="off"
                 className="absolute inset-0 w-full px-4 py-2 text-center bg-transparent border-none rounded-sm placeholder:text-gray-300"
                 type="text"
@@ -70,8 +90,9 @@ function LoginForm() {
             </div>
             <div className="relative w-full h-[50px] mx-auto border-2 border-gray-200 rounded-2xl overflow-hidden">
               <input
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
+                onChange={handleChange}
+                name='password'
+                value={formData.password}
                 className="absolute inset-0 w-full px-4 py-2 text-center bg-transparent border-none rounded-sm placeholder:text-gray-300"
                 type="password"
                 placeholder="Password"

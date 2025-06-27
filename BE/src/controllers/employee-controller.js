@@ -1,4 +1,5 @@
-const employeeService = require('../services/employee-service')
+const employeeService = require('../services/employee-service');
+const jwtService = require("../services/jwt-service");
 
 async function findAllEmployees(req, res) {
 	const result = await employeeService.findAllEmployees()
@@ -57,9 +58,9 @@ async function deleteEmployeeById(req, res) {
 async function employeeAuth(req, res) {
     try {
         const { email, password } = req.body;
-        const result = await employeeService.employeeAuth(email, password);
+        const user = await employeeService.employeeAuth(email, password);
         
-        if (!result) {
+        if (!user) {
         res.status(401).end();
     }
     const token = jwtService.sign(user);

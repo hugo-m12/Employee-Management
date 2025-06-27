@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import { useParams } from "wouter";
 import CalendarComponent from "../components/Calendar";
+import toast from "react-hot-toast";
 import employeeService from "../services/employeeService";
 
 function EditEmployeeView() {
@@ -15,8 +16,7 @@ function EditEmployeeView() {
     vacationDays: [],
   });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState("");
+  const [, setError] = useState(null);
   const params = useParams();
 
   useEffect(() => {
@@ -54,12 +54,17 @@ function EditEmployeeView() {
       setLoading(true);
       setError(null);
       await employeeService.updateEmployeeById(params._id, employee);
-      setSuccessMessage(`Employee was updated successfully!`);
-      setTimeout(() => {
-        setSuccessMessage("");
-      }, 4000);
-    } catch (error) {
-      setError(error.message || "Failed to update employee");
+
+      toast.success("Employee was updated successfully!", {
+          duration: 3000,
+          position: "top-right",
+        });
+
+    } catch {
+      setError(toast.error("Failed to update Employee", {
+          duration: 3000,
+          position: "top-right",
+        }));
     } finally {
       setLoading(false);
     }
@@ -72,10 +77,7 @@ function EditEmployeeView() {
   return (
     <>
       <h1 className="text-4xl text-center font-semibold text-gray-700 mt-10 mb-4">Edit Employee</h1>
-      {error && <div className="text-red-500 text-center mb-4">{error}</div>}
-      {successMessage && (
-        <div className="text-green-500 text-center mb-4 font-medium">{successMessage}</div>
-      )}
+
       <form onSubmit={handleSubmit} className="max-w-md mx-auto p-8 bg-white shadow-lg rounded-lg space-y-6">
         <div className="space-y-4">
           <input

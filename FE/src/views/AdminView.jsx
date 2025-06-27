@@ -8,7 +8,7 @@ import employeeService from "../services/employeeService";
 function AdminView() {
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [, setError] = useState(null);
   const confirm = useConfirm();
 
   useEffect(() => {
@@ -45,7 +45,12 @@ function AdminView() {
       } else reason;
     } catch (error) {
       if (error?.message !== "cancel") {
-        setError(error.message || "Failed to delete Employee");
+
+        setError(toast.error("Failed to delete Employee", {
+          duration: 3000,
+          position: "top-right",
+        }));
+
       }
     } finally {
       setLoading(false);
@@ -65,7 +70,6 @@ function AdminView() {
               Add Employee
             </Link>
           </div>
-          {error && <div className="text-red-500 text-center mb-4">{error}</div>}
 
           <table className="table-auto w-full text-center border-collapse border border-gray-300 rounded-lg">
             <thead className="bg-gradient-to-r from-blue-700 via-violet-600 to-amber-500 text-white">

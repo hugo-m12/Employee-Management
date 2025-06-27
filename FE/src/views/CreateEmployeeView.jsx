@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from "react";
+import toast from "react-hot-toast";
 import employeeService from "../services/employeeService";
 
 function AddEmployeeView() {
@@ -12,8 +13,7 @@ function AddEmployeeView() {
     role: ''
   });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState('');
+  const [, setError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,13 +37,15 @@ function AddEmployeeView() {
         phone: '',
         role: ''
       });
-      setSuccessMessage(`User was created`);
-      
-      setTimeout(() => {
-        setSuccessMessage('');
-      }, 4000);
-    } catch (error) {
-      setError(error.message || 'Failed to create employee');
+      toast.success("Employee was created", {
+          duration: 3000,
+          position: "top-right",
+        });
+    } catch {
+      setError(toast.error("Failed to delete Employee", {
+          duration: 3000,
+          position: "top-right",
+        }));
     } finally {
       setLoading(false);
     }
@@ -52,13 +54,6 @@ function AddEmployeeView() {
   return (
     <>
       <h1 className="text-4xl text-center font-semibold text-gray-700 mt-10 mb-4">Create Employee</h1>
-      
-      {error && (
-        <div className="text-red-500 text-center">{error}</div>
-      )}
-      {successMessage && (
-        <div className="text-green-500 text-center mb-4 font-medium">{successMessage}</div>
-      )}
 
       <form onSubmit={handleSubmit} className="max-w-md mx-auto p-8 bg-white shadow-lg rounded-lg space-y-6">
         <div className="space-y-4">

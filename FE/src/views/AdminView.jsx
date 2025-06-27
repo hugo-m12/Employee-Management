@@ -1,12 +1,15 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
+import { useConfirm } from "material-ui-confirm";
+import toast from "react-hot-toast";
 import employeeService from "../services/employeeService";
 
 function AdminView() {
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const confirm = useConfirm();
 
   useEffect(() => {
     const fetchEmployees = async () => {
@@ -14,26 +17,41 @@ function AdminView() {
         const result = await employeeService.getAllEmployees();
         setEmployees(result);
       } catch (error) {
-        setError('Failed to fetch employees');
+        setError(`Failed to fetch employees ${error}`);
       }
     };
     fetchEmployees();
   }, []);
 
-  const handleDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete this employee?')) {
-      try {
+  async function handleDelete(id) {
+    try {
+      console.log("clicked");
+      const { confirmed, reason } = await confirm({
+        title: "Are you sure you want to delete this Employee?",
+        description: "This will delete this employee's data permanently",
+        
+      });
+
+      if (confirmed) {
         setLoading(true);
         await employeeService.deleteEmployeeById(id);
-        
-        setEmployees((prevEmployees) => prevEmployees.filter((emp) => emp._id !== id));
-        setLoading(false);
-      } catch (error) {
-        setError('Failed to delete employee');
-        setLoading(false);
+
+        toast.success("Employee was deleted", {
+          duration: 3000,
+          position: "top-center",
+        });
+        setEmployees((prevEmployees) =>
+          prevEmployees.filter((emp) => emp._id !== id)
+        );
+      } else reason;
+    } catch (error) {
+      if (error?.message !== "cancel") {
+        setError(error.message || "Failed to delete Employee");
       }
+    } finally {
+      setLoading(false);
     }
-  };
+  }
 
   return (
     <>

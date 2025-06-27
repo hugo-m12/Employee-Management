@@ -45,7 +45,7 @@ function LoginForm() {
 
   return (
     <>
-      <div className="font-[Poppins] flex justify-center items-center min-h-screen bg-[url(images/login-background.jpg)] bg-no-repeat bg-cover bg-center">
+      <div className="font-[Poppins] flex justify-center items-center min-h-screen bg-[url(/images/login_background.jpg)] bg-no-repeat bg-cover bg-center">
         <div className="w-[420px] bg-transparent backdrop-blur-2xl text-white p-6 rounded-2xl shadow-lg">
           <form action="" onSubmit={handleSubmit} className="space-y-6">
             <h1 className="text-[36px] text-center font-bold tracking-tight">

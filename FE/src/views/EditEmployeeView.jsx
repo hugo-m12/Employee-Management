@@ -1,7 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import { useParams } from "wouter";
-import CalendarComponent from "../components/Calendar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
+import CalendarComponent from "../components/CalendarComponent";
 import toast from "react-hot-toast";
 import employeeService from "../services/employeeService";
 
@@ -80,6 +82,7 @@ function EditEmployeeView() {
 
       <form onSubmit={handleSubmit} className="max-w-md mx-auto p-8 bg-white shadow-lg rounded-lg space-y-6">
         <div className="space-y-4">
+          <label>Name</label>
           <input
             required
             name="name"
@@ -88,6 +91,7 @@ function EditEmployeeView() {
             className="w-full h-10 px-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Name"
           />
+          <label>Employee Type</label>
           <input
             required
             name="type"
@@ -96,6 +100,7 @@ function EditEmployeeView() {
             className="w-full h-10 px-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Type"
           />
+          <label>Email</label>
           <input
             required
             name="email"
@@ -104,6 +109,7 @@ function EditEmployeeView() {
             className="w-full h-10 px-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Email"
           />
+          <label>Password</label>
           <input
             type="password"
             required
@@ -113,6 +119,7 @@ function EditEmployeeView() {
             className="w-full h-10 px-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Password"
           />
+          <label>Phone</label>
           <input
             name="phone"
             value={employee.phone}
@@ -120,6 +127,7 @@ function EditEmployeeView() {
             className="w-full h-10 px-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Phone"
           />
+          <label>Role</label>
           <input
             required
             name="role"
@@ -130,18 +138,22 @@ function EditEmployeeView() {
           />
         </div>
 
-        <div className="text-center">
-          <h3 className="text-2xl font-semibold text-gray-700">Vacation Days</h3>
+      <div className="text-center">
+        <h3 className="text-2xl font-semibold text-gray-700 mb-4">Vacation Days</h3>
+          <FontAwesomeIcon
+                className="mr-3"
+                icon={faCalendarDays}
+                />
           <CalendarComponent
             employee={employee}
             onVacationDaysChange={handleVacationDaysChange}
-          />
+            />
           {employee.vacationDays?.length > 0 ? (
-            <p className="text-lg text-gray-600 mt-2">{employee.vacationDays.length} Vacation Days Selected</p>
+            <p className="text-lg text-gray-600 mt-4">{employee.vacationDays.length} Vacation Days Selected</p>
           ) : (
             <p className="text-lg text-gray-600 mt-2">No Vacation Days Selected</p>
           )}
-        </div>
+      </div>
 
         <div className="flex justify-center">
           <button

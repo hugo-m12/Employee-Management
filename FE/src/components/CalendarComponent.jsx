@@ -20,11 +20,11 @@ export default function CalendarComponent({ employee, onVacationDaysChange }) {
     onVacationDaysChange: PropTypes.func.isRequired,
   };
   return (
-    <DatePicker
-      value={employee.vacationDays}
-      onChange={handleDateSelect}
-      multiple
-      format="YYYY-MM-DD"
-    />
+  <DatePicker
+    value={employee.vacationDays}
+    onChange={handleDateSelect}
+    multiple
+    format="YYYY-MM-DD"
+  />
   );
 }

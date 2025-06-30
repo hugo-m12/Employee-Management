@@ -57,6 +57,7 @@ function AddEmployeeView() {
 
       <form onSubmit={handleSubmit} className="max-w-md mx-auto p-8 bg-white shadow-lg rounded-lg space-y-6">
         <div className="space-y-4">
+          <label>Name</label>
           <input
             required
             name="name"
@@ -65,6 +66,7 @@ function AddEmployeeView() {
             className="w-full h-10 px-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Name"
             />
+          <label>Employee Type</label>
           <input
             required
             name="type"
@@ -73,6 +75,7 @@ function AddEmployeeView() {
             className="w-full h-10 px-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Type"
             />
+          <label>Email</label>
           <input
             required
             name="email"
@@ -81,6 +84,7 @@ function AddEmployeeView() {
             className="w-full h-10 px-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Email"
             />
+          <label>Password</label>
           <input
             type="password"
             required
@@ -90,6 +94,7 @@ function AddEmployeeView() {
             className="w-full h-10 px-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Password"
             />
+          <label>Phone</label>
           <input
             name="phone"
             value={employee.phone}
@@ -97,6 +102,7 @@ function AddEmployeeView() {
             className="w-full h-10 px-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Phone"
             />
+          <label>Role</label>
           <input
             required
             name="role"

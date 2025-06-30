@@ -4,12 +4,23 @@ import { Link } from "wouter";
 import { useConfirm } from "material-ui-confirm";
 import toast from "react-hot-toast";
 import employeeService from "../services/employeeService";
+import fetchService from "../services/fetchService";
 
 function AdminView() {
+  const url = "http://localhost:3000";
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(false);
   const [, setError] = useState(null);
   const confirm = useConfirm();
+
+  useEffect(function () {
+    (async function () {
+      const data = await fetchService.get(`${url}/admin`, true);
+      if (!data) {
+        window.location = "/";
+      }
+    })();
+  }, []);
 
   useEffect(() => {
     const fetchEmployees = async () => {

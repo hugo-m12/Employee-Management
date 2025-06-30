@@ -6,6 +6,7 @@ import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 import CalendarComponent from "../components/CalendarComponent";
 import toast from "react-hot-toast";
 import employeeService from "../services/employeeService";
+import fetchService from "../services/fetchService";
 
 function EditEmployeeView() {
   const [employee, setEmployee] = useState({
@@ -19,7 +20,17 @@ function EditEmployeeView() {
   });
   const [loading, setLoading] = useState(false);
   const [, setError] = useState(null);
+  const url = "http://localhost:3000";
   const params = useParams();
+
+  useEffect(function () {
+        (async function () {
+          const data = await fetchService.get(`${url}/admin`, true);
+          if (!data) {
+            window.location = "/";
+          }
+        })();
+      }, []);
 
   useEffect(() => {
     const fetchEmployeeData = async () => {

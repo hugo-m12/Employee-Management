@@ -1,5 +1,6 @@
 import React from 'react';
-import { useState } from "react";
+import fetchService from "../services/fetchService";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import employeeService from "../services/employeeService";
 
@@ -14,6 +15,16 @@ function AddEmployeeView() {
   });
   const [loading, setLoading] = useState(false);
   const [, setError] = useState(null);
+  const url = "http://localhost:3000";
+
+  useEffect(function () {
+      (async function () {
+        const data = await fetchService.get(`${url}/admin`, true);
+        if (!data) {
+          window.location = "/";
+        }
+      })();
+    }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

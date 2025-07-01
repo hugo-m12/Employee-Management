@@ -16,21 +16,26 @@ async function findEmployeeById(id) {
 }
 
 async function createEmployee(employeeData) { 
+	const hashedPassword = await argon2.hash(employeeData.password);
 	const result = employees.insertOne({
 		name: employeeData.name,
 		type: employeeData.type,
         email: employeeData.email,
         phone: employeeData.phone,
         role: employeeData.role,
-        password: employeeData.password,
+        password: hashedPassword,
         vacationDays: employeeData.vacationDays
 	})
 
-	return result
+	return {
+        result,
+        hashedPassword
+    };
 }
 
 async function updateEmployeeById(id, employeeData) {
     const filter = { _id: new ObjectId(id) }
+	const hashedPassword = await argon2.hash(employeeData.password);
 	const result = employees.updateOne(filter,
 		{
 			$set: {
@@ -39,13 +44,16 @@ async function updateEmployeeById(id, employeeData) {
                 email: employeeData.email,
                 phone: employeeData.phone,
                 role: employeeData.role, 
-                password: employeeData.password,
+                password: hashedPassword,
                 vacationDays: employeeData.vacationDays
 			},
 		}
 	)
 
-	return result
+	return {
+        result,
+        hashedPassword
+    };
 }
 
 async function deleteEmployeeById(id) {

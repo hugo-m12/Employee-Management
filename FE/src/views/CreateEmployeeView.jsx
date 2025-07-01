@@ -77,17 +77,18 @@ function AddEmployeeView() {
             className="w-full h-10 px-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Name"
             />
-          <label>Employee Type</label>
-          <select required
-                  name="type"
-                  value={employee.type}
-                  onChange={handleChange}
-                  className="w-full h-10 px-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Type"
+        <label>Employee Type</label>
+        <select 
+            required
+            name="type"
+            value={employee.type}
+            onChange={handleChange}
+            className="w-full h-10 px-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           >
+          <option value="">Select type</option>
           <option value="user">User</option>
           <option value="admin">Admin</option>
-          </select>
+        </select>
           <label>Email</label>
           <input
             required

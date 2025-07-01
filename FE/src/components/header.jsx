@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import { navigate } from "wouter/use-browser-location";
 
 function Header({ isAuthenticated, onLogout }) {
+
   const handleLogout = () => {
     if (onLogout) onLogout();
     toast.success("User has logged out", {
@@ -28,11 +29,12 @@ function Header({ isAuthenticated, onLogout }) {
           
           {isAuthenticated && (
             <>
+            {/* TODO:if the employee is an admin he can see the panel if not he doesnt have acess*/}
               <li>
                 <Link 
                   className="text-gray-400 no-underline transition-colors duration-300 hover:text-black hover:underline ml-2"
                   href="/Admin"
-                >
+                  >
                   Admin Panel
                 </Link>
               </li>

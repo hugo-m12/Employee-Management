@@ -6,6 +6,13 @@ import employeeService from "../services/employeeService";
 
 function HomeView() {
   const [employees, setEmployees] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const EmployeesPerPage = 10;
+
+  const indexOfLastEmployee = (currentPage + 1) * EmployeesPerPage;
+  const indexOfFirstEmployee = indexOfLastEmployee - EmployeesPerPage;
+  const currentEmployees = employees.slice(indexOfFirstEmployee, indexOfLastEmployee);
+  const totalPages = Math.ceil(employees.length / EmployeesPerPage);
 
   useEffect(function () {
     (async function () {
@@ -13,6 +20,10 @@ function HomeView() {
       setEmployees(result);
     })();
   }, []);
+
+  const goToPage = (pageIndex) => {
+    setCurrentPage(pageIndex);
+  };
 
   return (
     <>
@@ -29,7 +40,7 @@ function HomeView() {
               </tr>
             </thead>
             <tbody>
-              {employees.map((value) => (
+              {currentEmployees.map((value) => (
                 <tr className="hover:bg-gray-200" key={value._id}>
                   <td className="py-3 px-4 border-b border-gray-300">
                     {value.name}
@@ -52,6 +63,21 @@ function HomeView() {
               ))}
             </tbody>
           </table>
+          <div className="flex justify-center mt-4 gap-2">
+            {[...Array(totalPages).keys()].map((pageIndex) => (
+              <button
+                key={pageIndex}
+                onClick={() => goToPage(pageIndex)}
+                className={`py-1 px-3 rounded-full font-semibold ${
+                  currentPage === pageIndex
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-300 text-gray-800 hover:bg-gray-400"
+                }`}
+              >
+                {pageIndex + 1}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </>

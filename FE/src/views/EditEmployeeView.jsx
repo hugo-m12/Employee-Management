@@ -103,14 +103,16 @@ function EditEmployeeView() {
             placeholder="Name"
           />
           <label>Employee Type</label>
-          <input
-            required
-            name="type"
-            value={employee.type}
-            onChange={handleChange}
-            className="w-full h-10 px-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Type"
-          />
+          <select required
+                  name="type"
+                  value={employee.type}
+                  onChange={handleChange}
+                  className="w-full h-10 px-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Type"
+          >
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+          </select>
           <label>Email</label>
           <input
             required
@@ -174,20 +176,6 @@ function EditEmployeeView() {
           >
             {loading ? (
               <span className="flex justify-center items-center">
-                <svg
-                  className="animate-spin h-5 w-5 mr-3 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 3v9m0 0l4-4m-4 4l-4-4"
-                  />
-                </svg>
                 Updating...
               </span>
             ) : (

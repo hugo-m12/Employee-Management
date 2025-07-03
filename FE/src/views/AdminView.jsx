@@ -60,6 +60,7 @@ function AdminView() {
         setEmployees((prevEmployees) =>
           prevEmployees.filter((emp) => emp._id !== id)
         );
+        setCurrentPage(0)
       } else reason;
     } catch (error) {
       if (error?.message !== "cancel") {

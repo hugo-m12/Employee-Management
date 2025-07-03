@@ -2,12 +2,11 @@ import React from 'react';
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useRef } from "react";
-import { navigate } from "wouter/use-browser-location";
 import toast from 'react-hot-toast';
 import fetchService from "../services/fetchService";
 import storeService from "../services/storeService";
 
-function LoginForm() {
+function LoginForm({ onLogin }) {
   const userRef = useRef();
   const errRef = useRef();
   const [error, setError] = useState("");
@@ -48,8 +47,8 @@ function LoginForm() {
         console.log(response.token)
 
         storeService.storeToken(response.token);
-        //if (onLogin) onLogin();
-        navigate("/home");
+        if (onLogin) onLogin();
+        window.location = "/home";
       } else {
         const errorData = await response.json(); 
         setError(errorData.error || 'Email or Password is Wrong. Please try again.');

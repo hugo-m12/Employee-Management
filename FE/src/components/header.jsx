@@ -29,7 +29,7 @@ function Header({ isAuthenticated, onLogout }) {
           
           {isAuthenticated && (
             <>
-            {/* TODO:if the employee is an admin he can see the panel if not he doesnt have acess*/}
+           {/*{employee?.type !== "user"}*/}
               <li>
                 <Link 
                   className="text-gray-400 no-underline transition-colors duration-300 hover:text-black hover:underline ml-2"
@@ -38,6 +38,7 @@ function Header({ isAuthenticated, onLogout }) {
                   Admin Panel
                 </Link>
               </li>
+            
               <li>
                 <Link 
                   className="text-gray-400 no-underline transition-colors duration-300 hover:text-black hover:underline ml-2"

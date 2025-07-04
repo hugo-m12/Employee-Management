@@ -21,7 +21,7 @@ function Header({ isAuthenticated, onLogout }) {
           <li>
             <Link 
               className="text-gray-400 no-underline transition-colors duration-300 hover:text-black hover:underline ml-2"
-              href="/Home"
+              href="/home"
             >
               Home
             </Link>

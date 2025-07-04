@@ -11,6 +11,7 @@ function LoginForm({ onLogin }) {
   const errRef = useRef();
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
+  const [, setLoggedUser] = useState();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -44,18 +45,21 @@ function LoginForm({ onLogin }) {
           position: 'top-right'
         });
 
-        console.log(response.token)
-
+        const loggedUser = response.user
+        setLoggedUser(loggedUser);
         storeService.storeToken(response.token);
-        if (onLogin) onLogin();
+
+        if (onLogin) onLogin(loggedUser);
         window.location = "/home";
+        
       } else {
         const errorData = await response.json(); 
         setError(errorData.error || 'Email or Password is Wrong. Please try again.');
       }
-    } catch (err) {
+      
+
+    } catch {
       setError('Email or Password is Wrong. Please try again.');
-      console.error('Login error:', err);
     } finally {
       setLoading(false); 
     }

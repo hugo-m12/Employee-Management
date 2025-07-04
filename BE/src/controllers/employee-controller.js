@@ -59,15 +59,21 @@ async function employeeAuth(req, res) {
     try {
         const { email, password } = req.body;
         const user = await employeeService.employeeAuth(email, password);
+
+		const loggedUser = {
+			name: user.name,
+			type: user.type
+		}
         
         if (!user) {
         res.status(401).end();
     }
     const token = jwtService.sign(user);
+	
     res.json({
-        token
+        token, 
+		user: loggedUser
     });
-		
 
     } catch (error) {
         res.status(error.message.includes('Email not found') ? 404 : 401).json({

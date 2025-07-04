@@ -14,7 +14,6 @@ import { Toaster } from 'react-hot-toast';
 
 function App() {
   const [location] = useLocation();  
-
   const [isAuthenticated, setIsAuthenticated] = useState(storeService.getToken() !== null);
 
   const handleLogin = () => {
@@ -29,9 +28,8 @@ function App() {
   return (
     <>
       {location !== "/" && <Header isAuthenticated={isAuthenticated} onLogout={handleLogout} />}  
-      
       <Route exact path="/" component={LoginView} onLogin={handleLogin} />
-      <Route exact path="/Home" component={HomeView} />
+      <Route exact path="/home" component={HomeView} />
       <Toaster />
       <ConfirmProvider>
       <Route path="/Admin" component={AdminView} />

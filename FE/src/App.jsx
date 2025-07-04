@@ -11,6 +11,7 @@ import LoginView from "./views/LoginView";
 import storeService from './services/storeService';
 import { ConfirmProvider } from 'material-ui-confirm';
 import { Toaster } from 'react-hot-toast';
+import { AuthProvider } from './utils/AuthContext';
 
 function App() {
   const [location] = useLocation();  
@@ -27,6 +28,7 @@ function App() {
   
   return (
     <>
+    <AuthProvider>
       {location !== "/" && <Header isAuthenticated={isAuthenticated} onLogout={handleLogout} />}  
       <Route exact path="/" component={LoginView} onLogin={handleLogin} />
       <Route exact path="/home" component={HomeView} />
@@ -36,8 +38,8 @@ function App() {
       </ConfirmProvider>
       <Route path="/CreateEmployee" component={CreateEmployeeView} />
       <Route path="/EditEmployee/:_id" component={EditEmployeeView} />
-      
       <Footer />
+    </AuthProvider>
     </>
   );
 }

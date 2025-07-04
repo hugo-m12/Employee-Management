@@ -5,7 +5,7 @@ function LoginView() {
   return (
     <>
       <div>
-        <LoginForm/>
+        <LoginForm />
       </div>
     </>
   );

@@ -5,13 +5,16 @@ import { useState, useRef } from "react";
 import toast from 'react-hot-toast';
 import fetchService from "../services/fetchService";
 import storeService from "../services/storeService";
+import { useLocation } from 'wouter';
+import {useAuth} from '../utils/AuthContext';
 
 function LoginForm({ onLogin }) {
   const userRef = useRef();
   const errRef = useRef();
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
-  const [, setLoggedUser] = useState();
+  const { login } = useAuth();
+  const [, setLocation] = useLocation();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -46,11 +49,11 @@ function LoginForm({ onLogin }) {
         });
 
         const loggedUser = response.user
-        setLoggedUser(loggedUser);
+        console.log(response.user)
+        login(loggedUser);
         storeService.storeToken(response.token);
-
         if (onLogin) onLogin(loggedUser);
-        window.location = "/home";
+        setLocation("/home");
         
       } else {
         const errorData = await response.json(); 

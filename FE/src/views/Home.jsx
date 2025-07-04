@@ -3,13 +3,13 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "wouter";
 import employeeService from "../services/employeeService";
-
+import { useAuth } from '../utils/AuthContext';
 
 function HomeView() {
+  const { loggedUser } = useAuth();
   const [employees, setEmployees] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const EmployeesPerPage = 10;
-
 
   const indexOfLastEmployee = (currentPage + 1) * EmployeesPerPage;
   const indexOfFirstEmployee = indexOfLastEmployee - EmployeesPerPage;
@@ -27,13 +27,11 @@ function HomeView() {
     setCurrentPage(pageIndex);
   };
 
-  //todo: props username name here
-
   return (
     <>
       <div className="flex justify-center items-center min-h-screen bg-gradient-to-tr from-sky-200 to-blue-400">
         <div className="overflow-x-auto bg-white p-6 rounded-lg shadow-lg w-full max-w-4xl">
-      <h3 className="text-center text-4xl font-bold mb-5">Welcome username {}</h3>
+      <h3 className="text-center text-4xl font-bold mb-5">Welcome {loggedUser?.name}</h3>
           <table className="table-auto w-full text-center border-collapse border border-gray-300 rounded-lg">
             <thead className="bg-gradient-to-r from-violet-600 to-indigo-600 text-white">
               <tr>

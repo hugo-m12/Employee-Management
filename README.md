@@ -54,7 +54,6 @@ there is an Admin Panel where you can Create New Employees, Edit all of them and
 to choose the desired Vacation Days Navigate to Edit and choose your days on the calendar.
 
 # TODO
-Due to time constraints i could not implement a proper auth system for updating passwords on the FE it but i would like to do so in the future, also role based operations as well.
-I plan to enhance this application's security by implementing stronger and comprehensive security controls and best practices.
+I plan to enhance this application's security by implementing stronger and comprehensive security controls and best practices, for example RBAC(Role-based access control).
 
  

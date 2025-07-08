@@ -5,6 +5,7 @@ import { useConfirm } from "material-ui-confirm";
 import toast from "react-hot-toast";
 import employeeService from "../services/employeeService";
 import fetchService from "../services/fetchService";
+import { useAuth } from "../utils/AuthContext";
 
 function AdminView() {
   const url = "http://localhost:3000";
@@ -14,6 +15,7 @@ function AdminView() {
   const [currentPage, setCurrentPage] = useState(0);
   const confirm = useConfirm();
   const EmployeesPerPage = 10;
+  const { loggedUser } = useAuth();
 
   const indexOfLastEmployee = (currentPage + 1) * EmployeesPerPage;
   const indexOfFirstEmployee = indexOfLastEmployee - EmployeesPerPage;
@@ -22,12 +24,17 @@ function AdminView() {
 
   useEffect(function () {
     (async function () {
-      const data = await fetchService.get(`${url}/admin`, true);
+      const data = await fetchService.get(`${url}/admin`, true) && loggedUser?.type === "admin";
       if (!data) {
         window.location = "/";
       }
     })();
   }, []);
+
+  useEffect(() => {
+  if (loggedUser?.type === "admin") return;
+      window.location.href = '/home';
+}, [loggedUser]);
 
   useEffect(() => {
     const fetchEmployees = async () => {

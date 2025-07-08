@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import fetchService from "../services/fetchService";
 import storeService from "../services/storeService";
 import { useLocation } from 'wouter';
-import {useAuth} from '../utils/AuthContext';
+import { useAuth } from '../utils/AuthContext';
 
 function LoginForm({ onLogin }) {
   const userRef = useRef();
@@ -48,18 +48,18 @@ function LoginForm({ onLogin }) {
           position: 'top-right'
         });
 
-        const loggedUser = response.user
-        console.log(response.user)
+      
+      const loggedUser = response.user
         login(loggedUser);
         storeService.storeToken(response.token);
         if (onLogin) onLogin(loggedUser);
         setLocation("/home");
+        //window.location = "/home"
         
       } else {
         const errorData = await response.json(); 
         setError(errorData.error || 'Email or Password is Wrong. Please try again.');
       }
-      
 
     } catch {
       setError('Email or Password is Wrong. Please try again.');

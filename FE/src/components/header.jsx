@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import toast from 'react-hot-toast';
 import { navigate } from "wouter/use-browser-location";
 
-function Header({ isAuthenticated, onLogout }) {
+function Header({ onLogout }) {
 
   const handleLogout = () => {
     if (onLogout) onLogout();
@@ -26,9 +26,7 @@ function Header({ isAuthenticated, onLogout }) {
               Home
             </Link>
           </li>
-          
-          {isAuthenticated && (
-            <>
+          {/*TODO: implement this later : isAuthenticated && (</>)*/}
            {/*{employee?.type !== "user"}*/}
               <li>
                 <Link 
@@ -38,7 +36,6 @@ function Header({ isAuthenticated, onLogout }) {
                   Admin Panel
                 </Link>
               </li>
-            
               <li>
                 <Link 
                   className="text-gray-400 no-underline transition-colors duration-300 hover:text-black hover:underline ml-2"
@@ -51,8 +48,6 @@ function Header({ isAuthenticated, onLogout }) {
                   Log Out
                 </Link>
               </li>
-            </>
-          )}
         </nav>
       </div>
     </header>

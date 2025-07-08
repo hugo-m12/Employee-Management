@@ -6,7 +6,7 @@ import HomeView from "./views/Home";
 import Footer from "./components/Footer";
 import AdminView from "./views/AdminView";
 import EditEmployeeView from "./views/EditEmployeeView";
-import Header from './components/header';
+import Header from './components/Header';
 import LoginView from "./views/LoginView";
 import storeService from './services/storeService';
 import { ConfirmProvider } from 'material-ui-confirm';

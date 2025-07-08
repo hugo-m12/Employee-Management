@@ -24,7 +24,7 @@ function AdminView() {
 
   useEffect(function () {
     (async function () {
-      const data = await fetchService.get(`${url}/admin`, true) && loggedUser?.type === "admin";
+      const data = await fetchService.get(`${url}/admin`, true);
       if (!data) {
         window.location = "/";
       }

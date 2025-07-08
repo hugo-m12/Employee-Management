@@ -1,6 +1,7 @@
+const url = "http://localhost:3000/api"
 async function getAllEmployees() { 
     try {
-        const response = await fetch(`http://localhost:3000/api/employees`);
+        const response = await fetch(`${url}/employees`);
         const result = await response.json();
         return(result);
 
@@ -12,7 +13,7 @@ async function getAllEmployees() {
 
   async function getEmployeeById(id) { 
     try {
-        const response = await fetch(`http://localhost:3000/api/employees/${id}`);
+        const response = await fetch(`${url}/employees/${id}`);
         const result = await response.json();
         return(result);
 
@@ -24,7 +25,7 @@ async function getAllEmployees() {
 
   async function createEmployee(data) {
     try {
-      const response = await fetch(`http://localhost:3000/api/employees/`, {
+      const response = await fetch(`${url}/employees/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -46,7 +47,7 @@ async function getAllEmployees() {
 
   async function updateEmployeeById(id, data) {
     try {
-      const response = await fetch(`http://localhost:3000/api/employees/${id}`, {
+      const response = await fetch(`${url}/employees/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -69,7 +70,7 @@ async function getAllEmployees() {
 
   async function deleteEmployeeById(id) {
     try {
-      const response = await fetch(`http://localhost:3000/api/employees/${id}`, {
+      const response = await fetch(`${url}/employees/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'

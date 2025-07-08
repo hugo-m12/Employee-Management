@@ -54,7 +54,6 @@ function LoginForm({ onLogin }) {
         storeService.storeToken(response.token);
         if (onLogin) onLogin(loggedUser);
         setLocation("/home");
-        //window.location = "/home"
         
       } else {
         const errorData = await response.json(); 

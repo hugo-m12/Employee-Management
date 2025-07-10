@@ -5,7 +5,7 @@ import CreateEmployeeView from "./views/CreateEmployeeView";
 import HomeView from "./views/Home";
 import AdminView from "./views/AdminView";
 import EditEmployeeView from "./views/EditEmployeeView";
-import Footer from "./components/Footer.jsx";
+//import Footer from "./components/Footer.jsx";
 import Header from "./components/Header.jsx";
 import LoginView from "./views/LoginView";
 import storeService from './services/storeService';
@@ -38,7 +38,7 @@ function App() {
       </ConfirmProvider>
       <Route path="/CreateEmployee" component={CreateEmployeeView} />
       <Route path="/EditEmployee/:_id" component={EditEmployeeView} />
-      <Footer />
+      {/*<Footer />*/}
     </AuthProvider>
     </>
   );

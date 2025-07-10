@@ -6,7 +6,7 @@ import HomeView from "./views/Home";
 import AdminView from "./views/AdminView";
 import EditEmployeeView from "./views/EditEmployeeView";
 import Header from './components/header';
-import Footer from './components/Footer';
+import AppFooter from './components/AppFooter';
 import LoginView from "./views/LoginView";
 import storeService from './services/storeService';
 import { ConfirmProvider } from 'material-ui-confirm';
@@ -38,7 +38,7 @@ function App() {
         <Route path="/EditEmployee/:_id" component={EditEmployeeView} />
         
         <Toaster />
-        <Footer />
+        <AppFooter />
       </ConfirmProvider>
     </AuthProvider>
   );

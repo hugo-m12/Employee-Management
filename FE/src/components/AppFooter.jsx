@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Footer(){
+function AppFooter(){
     return (
     <>
         <footer className="bg-black text-white text-center p-12"> 
@@ -12,4 +12,4 @@ function Footer(){
     )
 }
 
-export default Footer;
+export default AppFooter;

@@ -1,4 +1,4 @@
-const url = "http://localhost:3000/api"
+const url = "https://employee-managementbe.onrender.com/api"
 async function getAllEmployees() { 
     try {
         const response = await fetch(`${url}/employees`);

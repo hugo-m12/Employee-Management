@@ -15,7 +15,7 @@ function AddEmployeeView() {
   });
   const [loading, setLoading] = useState(false);
   const [, setError] = useState(null);
-  const url = "http://localhost:3000";
+  const url = "hhttps://employee-managementbe.onrender.com";
 
   useEffect(function () {
       (async function () {

@@ -20,7 +20,7 @@ function EditEmployeeView() {
   });
   const [loading, setLoading] = useState(false);
   const [, setError] = useState(null);
-  const url = "http://localhost:3000";
+  const url = "https://employee-managementbe.onrender.com";
   const params = useParams();
 
   useEffect(function () {
@@ -104,6 +104,7 @@ function EditEmployeeView() {
           />
           <label>Employee Type</label>
         <select 
+            disabled
             required
             name="type"
             value={employee.type}

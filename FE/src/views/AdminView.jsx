@@ -8,7 +8,7 @@ import fetchService from "../services/fetchService";
 import { useAuth } from "../utils/AuthContext";
 
 function AdminView() {
-  const url = "http://localhost:3000";
+  const url = "https://employee-managementbe.onrender.com";
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(false);
   const [, setError] = useState(null);

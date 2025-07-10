@@ -53,7 +53,6 @@ function AdminView() {
       const { confirmed, reason } = await confirm({
         title: "Are you sure you want to delete this Employee?",
         description: "This will delete this employee's data permanently",
-        
       });
 
       if (confirmed) {

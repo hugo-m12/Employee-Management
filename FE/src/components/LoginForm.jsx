@@ -34,7 +34,6 @@ function LoginForm({ onLogin }) {
     try {
       const response = await fetchService.post(
         `http://localhost:3000/api/login`,
-
         {
           email: formData.email,
           password: formData.password,

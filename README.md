@@ -61,4 +61,4 @@ I plan to enhance this application's security by implementing stronger and compr
 
 BackEnd: [https://employee-managementbe.onrender.com/api/employees]
 
-FrontEnd: []
+FrontEnd: [https://employee-managementfe.netlify.app/]
